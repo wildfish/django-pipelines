@@ -1,14 +1,14 @@
 Settings
 ========
 
-WILDCOEUS_DEFAULT_PIPELINE_RUNNER
+PIPELINES_DEFAULT_PIPELINE_RUNNER
 ---------------------------------
 
 A python path to the runner to use.
 
-**default** :code:`wildcoeus.pipelines.runners.eager.Runner`
+**default** :code:`pipelines.runners.eager.Runner`
 
-WILDCOEUS_DEFAULT_PIPELINE_REPORTER
+PIPELINES_DEFAULT_PIPELINE_REPORTER
 -----------------------------------
 
 Either a python path to the reporter to use or a 2-tuple where the
@@ -19,16 +19,16 @@ construction.
 **default**::
 
     (
-        "wildcoeus.pipelines.reporters.base.MultiPipelineReporter",
+        "pipelines.reporters.base.MultiPipelineReporter",
         {
             "reporters": [
-                "wildcoeus.pipelines.reporters.logging.LoggingReporter",
-                "wildcoeus.pipelines.reporters.orm.ORMReporter",
+                "pipelines.reporters.logging.LoggingReporter",
+                "pipelines.reporters.orm.ORMReporter",
             ]
         },
     )
 
-WILDCOEUS_CLEAR_LOG_DAYS
+PIPELINES_CLEAR_LOG_DAYS
 ------------------------
 
 The default number of days to use when clearing the logs.

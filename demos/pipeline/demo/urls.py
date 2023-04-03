@@ -7,7 +7,7 @@ from django.urls import include, path
 admin.autodiscover()
 
 urlpatterns = [
-    path("pipelines/", include("wildcoeus.pipelines.urls")),
+    path("pipelines/", include("pipelines.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
 ]

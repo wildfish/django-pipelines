@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from wildcoeus.pipelines.runners.celery.tasks import run_pipeline
+from pipelines.runners.celery.tasks import run_pipeline
 
 
 class Command(BaseCommand):

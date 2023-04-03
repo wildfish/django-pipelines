@@ -2,24 +2,10 @@ from itertools import chain
 
 import pytest
 
-from tests.dashboards.app1 import dashboards
+from pipelines.registry import pipeline_registry
+from pipelines.results.helpers import reset_storage_object
+from pipelines.tasks.registry import task_registry
 from tests.pipelines.app import pipelines
-from wildcoeus.dashboards.registry import registry
-from wildcoeus.pipelines.registry import pipeline_registry
-from wildcoeus.pipelines.results.helpers import reset_storage_object
-from wildcoeus.pipelines.tasks.registry import task_registry
-
-
-@pytest.fixture(autouse=True)
-def auto_registry():
-    registry.reset()
-    registry.register(dashboards.TestDashboard)
-    registry.register(dashboards.TestFilterDashboard)
-    registry.register(dashboards.TestAdminDashboard)
-    registry.register(dashboards.TestComplexDashboard)
-    registry.register(dashboards.TestDashboardWithLayout)
-    registry.register(dashboards.TestModelDashboard)
-    registry.register(dashboards.TestNoMetaDashboard)
 
 
 @pytest.fixture(autouse=True)

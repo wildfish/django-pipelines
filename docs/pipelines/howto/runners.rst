@@ -1,17 +1,17 @@
 Runners
 =======
 
-In wildcoeus the pipelines and runners are kept separate meaning how the tasks
+In django-pipelines the pipelines and runners are kept separate meaning how the tasks
 are ran can me modified based on on your requirements.
 
-To specify a runner to use for pipelines set :code:`WILDCOEUS_PIPELINE_RUNNER`.
-By default this is set to the eager runner (:code:`wildcoeus.pipelines.runners.eager.Runner`).
+To specify a runner to use for pipelines set :code:`PIPELINES_PIPELINE_RUNNER`.
+By default this is set to the eager runner (:code:`pipelines.runners.eager.Runner`).
 
-Currently wildcoueus ships with the following runners:
+Currently pipelines ships with the following runners:
 
-* Eager (:code:`wildcoeus.pipelines.runners.eager.Runner`): This will run all
+* Eager (:code:`pipelines.runners.eager.Runner`): This will run all
   tasks to run in sequence, locally.
-* Celery (:code:`wildcoeus.pipelines.runners.celery.runner.Runner`): This will
+* Celery (:code:`pipelines.runners.celery.runner.Runner`): This will
   create a celery canvas that will run the pipeline on celery workers.
 
 Ordering

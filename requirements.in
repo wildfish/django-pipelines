@@ -4,13 +4,8 @@
 
 # Core
 celery
-django-cors-headers
-django-extensions
+django_extensions
 pydantic
-
-# Charts
-pandas
-plotly
 
 # Dev tools
 Faker

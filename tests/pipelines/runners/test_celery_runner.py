@@ -4,19 +4,19 @@ from unittest.mock import Mock
 import pytest
 from celery import chain, chord
 
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.registry import pipeline_registry
-from wildcoeus.pipelines.results.helpers import build_pipeline_execution
-from wildcoeus.pipelines.runners.celery.runner import Runner
-from wildcoeus.pipelines.runners.celery.tasks import (
+from pipelines.base import Pipeline
+from pipelines.registry import pipeline_registry
+from pipelines.results.helpers import build_pipeline_execution
+from pipelines.runners.celery.runner import Runner
+from pipelines.runners.celery.tasks import (
     run_pipeline_execution_report,
     run_pipeline_result_report,
     run_task,
     run_task_execution_report,
     run_task_result_report,
 )
-from wildcoeus.pipelines.status import PipelineTaskStatus
-from wildcoeus.pipelines.tasks.base import Task
+from pipelines.status import PipelineTaskStatus
+from pipelines.tasks.base import Task
 
 
 pytestmark = pytest.mark.django_db
@@ -33,7 +33,7 @@ def celery_config():
 
 @pytest.fixture(autouse=True)
 def logger(caplog):
-    caplog.set_level(logging.INFO, logger="wildcoeus-pipelines")
+    caplog.set_level(logging.INFO, logger="pipelines")
     return caplog
 
 

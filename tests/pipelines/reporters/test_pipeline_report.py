@@ -3,8 +3,8 @@ from unittest.mock import Mock
 import pytest
 from model_bakery import baker
 
-from wildcoeus.pipelines.reporters import PipelineReporter
-from wildcoeus.pipelines.status import PipelineTaskStatus
+from pipelines.reporters import PipelineReporter
+from pipelines.status import PipelineTaskStatus
 
 
 pytestmark = pytest.mark.django_db

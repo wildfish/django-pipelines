@@ -3,11 +3,11 @@ from unittest.mock import Mock, call
 
 import pytest
 
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.models import OrmTaskResult
-from wildcoeus.pipelines.runners.eager import Runner
-from wildcoeus.pipelines.status import PipelineTaskStatus
-from wildcoeus.pipelines.tasks.base import Task
+from pipelines.base import Pipeline
+from pipelines.models import OrmTaskResult
+from pipelines.runners.eager import Runner
+from pipelines.status import PipelineTaskStatus
+from pipelines.tasks.base import Task
 
 
 pytestmark = pytest.mark.django_db()

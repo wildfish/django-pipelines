@@ -7,7 +7,7 @@ from django.utils.timezone import now
 import pytest
 from model_bakery import baker
 
-from wildcoeus.pipelines.models import (
+from pipelines.models import (
     OrmPipelineExecution,
     OrmPipelineResult,
     OrmTaskExecution,

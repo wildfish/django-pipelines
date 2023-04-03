@@ -22,7 +22,7 @@ Storage Utilities
 =================
 
 Rather than interacting with the storage directly you should use the set
-of utility methods defined in :code:`wildcoeus.pipelines.results.helpers`.
+of utility methods defined in :code:`pipelines.results.helpers`.
 This module provides a set of methods for creating and fetching result
 objects from the storage and will work for all storage classes provided
 they follow the defined interface.
@@ -31,12 +31,12 @@ Custom Storage Class
 ====================
 
 To define you own custom storage class you must extend the base storage
-class (:code:`wildcoeus.pipelines.results.base.PipelineStorage`) and each
+class (:code:`pipelines.results.base.PipelineStorage`) and each
 object returned will need to extend the relevant storage object (
-:code:`wildcoeus.pipelines.results.base.PipelineExecution`,
-:code:`wildcoeus.pipelines.results.base.PipelineResult`,
-:code:`wildcoeus.pipelines.results.base.TaskExecution` and
-:code:`wildcoeus.pipelines.results.base.TaskResult`).
+:code:`pipelines.results.base.PipelineExecution`,
+:code:`pipelines.results.base.PipelineResult`,
+:code:`pipelines.results.base.TaskExecution` and
+:code:`pipelines.results.base.TaskResult`).
 
 When accessing properties from storage objects, a :code:`get_` method
 should be used. Similarly for setting values a :code:`set_` method
@@ -57,11 +57,11 @@ Similarly, for :code:`set_foo` methods will set :code:`foo` on the object
 unless it's otherwise defined.
 
 For an example of how to build a custom storage class see
-:code:`wildcoeus.pipelines.results.orm.OrmPipelineResultsStorage`.
+:code:`pipelines.results.orm.OrmPipelineResultsStorage`.
 
 To override the storage class used, change the value of
-:code:`WILDCOEUS_PIPELINES_RESULTS_STORAGE` in your settings file
-(:code:`"wildcoeus.pipelines.results.orm.OrmPipelineResultsStorage"` by default).
+:code:`PIPELINES_PIPELINES_RESULTS_STORAGE` in your settings file
+(:code:`"pipelines.results.orm.OrmPipelineResultsStorage"` by default).
 This can either be a string where the value matches the python path to the
 class to use or a 2-tuple where the first element matches the python path to
 the class to use and the second element is a dictionary of keyword arguments

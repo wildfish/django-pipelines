@@ -4,11 +4,11 @@ from unittest.mock import Mock
 import pytest
 from pydantic import BaseModel
 
-from tests.dashboards.fakes import fake_user
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.models import OrmPipelineExecution
-from wildcoeus.pipelines.status import PipelineTaskStatus
-from wildcoeus.pipelines.tasks.base import ConfigValidationError, Task, TaskConfig
+from pipelines.base import Pipeline
+from pipelines.models import OrmPipelineExecution
+from pipelines.status import PipelineTaskStatus
+from pipelines.tasks.base import ConfigValidationError, Task, TaskConfig
+from tests.pipelines.fakes import fake_user
 
 
 pytest_plugins = [

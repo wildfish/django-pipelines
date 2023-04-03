@@ -1,12 +1,12 @@
 {
-  "name": "django-wildcoeus",
+  "name": "django-pipelines",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:wildfish/django-wildcoeus.git",
+  "repository": "git@github.com:wildfish/django-pipelines.git",
   "author": "Wildfish <developers@wildfish.com>",
   "license": "MIT",
   "scripts": {
-    "build-css": "postcss wildcoeus/static/wildcoeus/css/src/index.css -o wildcoeus/static/wildcoeus/css/wildcoeus.css"
+    "build-css": "postcss pipelinestatic/pipelines/css/src/index.css -o pipelinestatic/pipelines/css/pipelines.css"
   },
   "devDependencies": {
     "postcss": "^8.4.21",

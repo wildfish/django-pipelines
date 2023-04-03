@@ -11,15 +11,15 @@ import pytest
 from model_bakery import baker
 from pydantic import BaseModel
 
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.models import (
+from pipelines.base import Pipeline
+from pipelines.models import (
     OrmPipelineExecution,
     OrmPipelineResult,
     OrmTaskExecution,
     OrmTaskResult,
 )
-from wildcoeus.pipelines.status import PipelineTaskStatus
-from wildcoeus.pipelines.tasks import Task
+from pipelines.status import PipelineTaskStatus
+from pipelines.tasks import Task
 
 
 pytest_plugins = [
@@ -32,13 +32,13 @@ pytestmark = pytest.mark.django_db
 @pytest.mark.parametrize(
     "url",
     [
-        reverse("wildcoeus.pipelines:list"),
-        reverse("wildcoeus.pipelines:pipeline-execution-list", args=["pipeline-slug"]),
-        reverse("wildcoeus.pipelines:results-list", args=["123"]),
-        reverse("wildcoeus.pipelines:logs-list", args=["123"]),
-        reverse("wildcoeus.pipelines:logs-filter", args=["123"]),
-        reverse("wildcoeus.pipelines:start", args=["pipeline-slug"]),
-        reverse("wildcoeus.pipelines:rerun-task", args=["1"]),
+        reverse("pipelines:list"),
+        reverse("pipelines:pipeline-execution-list", args=["pipeline-slug"]),
+        reverse("pipelines:results-list", args=["123"]),
+        reverse("pipelines:logs-list", args=["123"]),
+        reverse("pipelines:logs-filter", args=["123"]),
+        reverse("pipelines:start", args=["pipeline-slug"]),
+        reverse("pipelines:rerun-task", args=["1"]),
     ],
 )
 def test_view__no_permission(url, client):
@@ -49,7 +49,7 @@ def test_view__no_permission(url, client):
 
 def test_pipeline_list(client, staff):
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:list"))
+    response = client.get(reverse("pipelines:list"))
 
     assert response.status_code == 200
     assert "pipelines" in list(response.context_data.keys())
@@ -61,7 +61,7 @@ def test_pipeline_execution_list(client, staff):
 
     client.force_login(staff)
     response = client.get(
-        reverse("wildcoeus.pipelines:pipeline-execution-list", args=[pe.pipeline_id])
+        reverse("pipelines:pipeline-execution-list", args=[pe.pipeline_id])
     )
 
     assert response.status_code == 200
@@ -79,9 +79,7 @@ def test_pipeline_execution_list_queries_pinned(
     )
 
     with django_assert_num_queries(4):
-        client.get(
-            reverse("wildcoeus.pipelines:pipeline-execution-list", args=["12345"])
-        )
+        client.get(reverse("pipelines:pipeline-execution-list", args=["12345"]))
 
 
 def test_results_list__tasks_completed(client, staff):
@@ -90,7 +88,7 @@ def test_results_list__tasks_completed(client, staff):
     baker.make_recipe("pipelines.fake_task_execution", pipeline_result=pr, _quantity=3)
 
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:results-list", args=[pe.run_id]))
+    response = client.get(reverse("pipelines:results-list", args=[pe.run_id]))
 
     assert response.status_code == 200
     assert "object_list" in list(response.context_data.keys())
@@ -111,7 +109,7 @@ def test_results_list__tasks_not_completed(client, staff):
     )
 
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:results-list", args=[pe.run_id]))
+    response = client.get(reverse("pipelines:results-list", args=[pe.run_id]))
 
     assert response.status_code == 200
 
@@ -122,7 +120,7 @@ def test_results_list_queries_pinned(client, staff, django_assert_num_queries):
     baker.make_recipe("pipelines.fake_pipeline_execution", _quantity=3)
 
     with django_assert_num_queries(4):
-        client.get(reverse("wildcoeus.pipelines:results-list", args=[pe.run_id]))
+        client.get(reverse("pipelines:results-list", args=[pe.run_id]))
 
 
 @pytest.mark.freeze_time("2022-12-20 13:23:55")
@@ -134,7 +132,7 @@ def test_log_list__tasks_completed(client, staff, snapshot):
     baker.make_recipe("pipelines.fake_pipeline_log", run_id=pe.run_id, _quantity=3)
 
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:logs-list", args=[pe.run_id]))
+    response = client.get(reverse("pipelines:logs-list", args=[pe.run_id]))
 
     assert response.status_code == 200
     assert "logs" in list(response.context_data.keys())
@@ -186,7 +184,7 @@ def test_log_list__pipeline_is_in_final_state__status_is_286(
     client.force_login(staff)
     response = client.get(
         reverse(
-            "wildcoeus.pipelines:logs-list",
+            "pipelines:logs-list",
             args=[pe.run_id],
         )
     )
@@ -204,7 +202,7 @@ def test_log_list__pipeline_not_in_final_state__status_is_286(
     client.force_login(staff)
     response = client.get(
         reverse(
-            "wildcoeus.pipelines:logs-list",
+            "pipelines:logs-list",
             args=[pe.run_id],
         )
     )
@@ -217,7 +215,7 @@ def test_log_list__no_filters__all_logs_included(client, staff, setup_logs):
     pe = OrmPipelineExecution.objects.first()
 
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:logs-list", args=[pe.run_id]))
+    response = client.get(reverse("pipelines:logs-list", args=[pe.run_id]))
 
     assert build_expected_message(pe) in response.context_data["logs"]
 
@@ -240,7 +238,7 @@ def test_log_list__filter_by_pipeline_result__pipeline_result_and_children_in_lo
 
     client.force_login(staff)
     response = client.get(
-        reverse("wildcoeus.pipelines:logs-list", args=[pe.run_id])
+        reverse("pipelines:logs-list", args=[pe.run_id])
         + f"?type=PipelineResult&id={target.id}"
     )
 
@@ -269,7 +267,7 @@ def test_log_list__filter_by_task_execution__task_execution_and_children_in_logs
 
     client.force_login(staff)
     response = client.get(
-        reverse("wildcoeus.pipelines:logs-list", args=[target.run_id])
+        reverse("pipelines:logs-list", args=[target.run_id])
         + f"?type=TaskExecution&id={target.id}"
     )
 
@@ -299,7 +297,7 @@ def test_log_list__filter_by_task_result__task_result_in_logs(
 
     client.force_login(staff)
     response = client.get(
-        reverse("wildcoeus.pipelines:logs-list", args=[target.run_id])
+        reverse("pipelines:logs-list", args=[target.run_id])
         + f"?type=TaskResult&id={target.id}"
     )
 
@@ -333,7 +331,7 @@ def test_log_list__tasks_not_completed(client, staff):
     baker.make_recipe("pipelines.fake_pipeline_log", run_id=pe.run_id)
 
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:logs-list", args=[pe.run_id]))
+    response = client.get(reverse("pipelines:logs-list", args=[pe.run_id]))
 
     assert response.status_code == 200
 
@@ -352,14 +350,12 @@ def test_log_list_queries_pinned(client, staff, django_assert_num_queries):
     baker.make_recipe("pipelines.fake_pipeline_log", run_id=pe.run_id)
 
     with django_assert_num_queries(4):
-        client.get(reverse("wildcoeus.pipelines:logs-list", args=[pe.run_id]))
+        client.get(reverse("pipelines:logs-list", args=[pe.run_id]))
 
 
 def test_start__get(client, staff, test_pipeline):
     client.force_login(staff)
-    response = client.get(
-        reverse("wildcoeus.pipelines:start", args=[test_pipeline.get_id()])
-    )
+    response = client.get(reverse("pipelines:start", args=[test_pipeline.get_id()]))
 
     assert response.status_code == 200
 
@@ -368,7 +364,7 @@ def test_start__post(client, staff, test_pipeline):
     client.force_login(staff)
     with tempfile.TemporaryDirectory() as d, override_settings(MEDIA_ROOT=d):
         response = client.post(
-            reverse("wildcoeus.pipelines:start", args=[test_pipeline.get_id()]), data={}
+            reverse("pipelines:start", args=[test_pipeline.get_id()]), data={}
         )
 
     assert response.status_code == 302
@@ -399,7 +395,7 @@ def test_start__post__with_formdata(client, staff):
     client.force_login(staff)
     with tempfile.TemporaryDirectory() as d, override_settings(MEDIA_ROOT=d):
         response = client.post(
-            reverse("wildcoeus.pipelines:start", args=[test_pipeline.get_id()]),
+            reverse("pipelines:start", args=[test_pipeline.get_id()]),
             data={"message": "test"},
         )
 
@@ -431,7 +427,7 @@ def test_start__post__with_no_formdata(client, staff):
     client.force_login(staff)
     with tempfile.TemporaryDirectory() as d, override_settings(MEDIA_ROOT=d):
         response = client.post(
-            reverse("wildcoeus.pipelines:start", args=[test_pipeline.get_id()]), data={}
+            reverse("pipelines:start", args=[test_pipeline.get_id()]), data={}
         )
 
     assert response.context_data["form"].errors == {
@@ -440,7 +436,7 @@ def test_start__post__with_no_formdata(client, staff):
     assert response.status_code == 200
 
 
-@patch("wildcoeus.pipelines.views.run_task")
+@patch("pipelines.views.run_task")
 def test_rerun_task__post(run_task, client, staff):
     class TestTaskFirst(Task):
         class Meta:
@@ -473,7 +469,7 @@ def test_rerun_task__post(run_task, client, staff):
     )
     client.force_login(staff)
     with tempfile.TemporaryDirectory() as d, override_settings(MEDIA_ROOT=d):
-        response = client.get(reverse("wildcoeus.pipelines:rerun-task", args=[tr.pk]))
+        response = client.get(reverse("pipelines:rerun-task", args=[tr.pk]))
 
     run_task.assert_called_once_with(
         pipeline_id=tr.pipeline_id,
@@ -489,6 +485,6 @@ def test_rerun_task__post(run_task, client, staff):
 
 def test_rerun_task__no_task(client, staff):
     client.force_login(staff)
-    response = client.get(reverse("wildcoeus.pipelines:rerun-task", args=["123"]))
+    response = client.get(reverse("pipelines:rerun-task", args=["123"]))
 
     assert response.status_code == 404

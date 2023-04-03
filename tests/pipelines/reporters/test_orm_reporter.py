@@ -1,9 +1,9 @@
 import pytest
 from model_bakery import baker
 
-from wildcoeus.pipelines.models import PipelineLog
-from wildcoeus.pipelines.reporters.orm import ORMReporter
-from wildcoeus.pipelines.status import PipelineTaskStatus
+from pipelines.models import PipelineLog
+from pipelines.reporters.orm import ORMReporter
+from pipelines.status import PipelineTaskStatus
 
 
 pytestmark = pytest.mark.django_db

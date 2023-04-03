@@ -23,9 +23,9 @@ RUN apt-get update \
 COPY ./requirements.txt /build/requirements.txt
 RUN pip install -r requirements.txt
 
-# todo: temp until we can get django-wildcoeus installable from git
-COPY django-wildcoeus-0.0.1.tar.gz  .
-RUN pip install django-wildcoeus-0.0.1.tar.gz
+# todo: temp until we can get django-pipelines installable from git
+COPY django-pipelines-0.0.1.tar.gz  .
+RUN pip install django-pipelines-0.0.1.tar.gz
 
 ENV WAIT_VERSION 2.9.0
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait

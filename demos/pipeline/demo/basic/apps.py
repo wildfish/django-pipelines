@@ -6,6 +6,6 @@ class BasicConfig(AppConfig):
     name = "demo.basic"
 
     def ready(self):
-        from wildcoeus.pipelines.registry import pipeline_registry
+        from pipelines.registry import pipeline_registry
 
         pipeline_registry.autodiscover()

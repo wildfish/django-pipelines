@@ -5,7 +5,7 @@ Reporters allow for messages from the tasks being ran to be written so that
 they can be retrieved at a later date.
 
 The default reporter used can be configured by changing the
-:code:`WILDCOEUS_PIPELINE_REPORTER`. By default this is setup to use the
+:code:`PIPELINES_PIPELINE_REPORTER`. By default this is setup to use the
 standard python logging and ORM logging.
 
 .. note::
@@ -16,7 +16,7 @@ Custom Reporters
 ----------------
 
 If you wish to write a custom reporter you must extend the :code:`PipelineReporter`
-from :code:`wildcoeus.pielines.reporters.base`. This should implement a :code:`report`
+from :code:`pipelines.reporters.base`. This should implement a :code:`report`
 method which takes 3 parameters:
 
 * :code:`context_object`: One of the pipeline result objects
@@ -25,7 +25,7 @@ method which takes 3 parameters:
 
 For example, the following would print to the console output::
 
-    from wildcoeus.pielines.reporters.base import PipelineReporter
+    from pipelines.reporters.base import PipelineReporter
 
     class PrintReporter(PipelineReporter):
         def report(self, context_object, status, message):
@@ -37,8 +37,8 @@ keyword arguments and configurable from the django settings file.
 Multiple Reporters
 ------------------
 
-To enable multiple reporters to be used at the same time, wildcoeus ships
-with :code:`MultiPipelineReporter` from :code:`wildcoeus.pielines.reporters.base`.
+To enable multiple reporters to be used at the same time, pipelines ships
+with :code:`MultiPipelineReporter` from :code:`pipelines.reporters.base`.
 This loads all the reporters provided in the :code:`reporters` keyword argument
 and will forward any report calls onto each.
 

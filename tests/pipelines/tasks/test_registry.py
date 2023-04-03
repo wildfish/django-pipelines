@@ -1,7 +1,7 @@
 import pytest
 
-from wildcoeus.pipelines.tasks import Task, TaskConfig
-from wildcoeus.pipelines.tasks.registry import task_registry
+from pipelines.tasks import Task, TaskConfig
+from pipelines.tasks.registry import task_registry
 
 
 def test_task_class_created_without_name___it_is_added_to_the_registry_using_the_classname():

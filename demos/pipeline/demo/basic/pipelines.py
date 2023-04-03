@@ -1,7 +1,7 @@
 import time
 
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.tasks import Task, TaskConfig
+from pipelines.base import Pipeline
+from pipelines.tasks import Task, TaskConfig
 
 
 class TaskWaitConfigType(TaskConfig):

@@ -1,0 +1,206 @@
+:root {
+  --dark-one: #343434;
+  --dark-two: #393939;
+  --dark-three: #b2b2b2;
+  --grey: #ececec;
+  --white: #fff;
+  --primary: rgba(82, 198, 53, 0.82);
+}
+
+* {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+}
+
+html {
+  font-size: 1.2em;
+  line-height: 1.4;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', serif;
+  background-color: var(--dark-one);
+  color: var(--white);
+}
+
+body {
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 95%;
+}
+
+a{
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 .5em 0;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+hr{
+  border-color: var(--primary);
+}
+
+.dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate, .paginate_button, .paginate_button.current{
+    color: var(--white) !important;
+    font-size: 0.9rem !important;
+}
+
+.dataTables_filter, .dataTables_length, .dataTables_info, .dataTables_paginate, .paginate_button, .paginate_button.current{
+    margin-bottom: 10px;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.table thead th {
+    border-bottom: 1px solid var(--grey);
+    background-color: var(--dark-two);
+    padding: 1rem;
+    text-align: left;
+    text-shadow: 1px 1px 1px var(--white);;
+}
+
+.table tbody td {
+    border-bottom: solid 1px var(--grey);
+    padding: 10px;
+}
+
+.pipeline-logs {
+  background-color: var(--dark-two);
+  border: solid 1px var(--grey);
+  padding: 5px;
+  color: var(--grey);
+  height: 50vh;
+  overflow: auto;
+}
+
+.breadcrumbs{
+    background-color: var(--dark-two);
+    color: var(--white);
+    padding: 1rem 0;
+    margin-bottom: 15px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.text-bg-primary {
+    color: #fff!important;
+    background-color: RGBA(13,110,253,1)!important;
+}
+
+.text-bg-success {
+    color: #fff!important;
+    background-color: RGBA(25,135,84,1)!important;
+}
+
+.text-bg-danger {
+    color: #fff!important;
+    background-color: RGBA(220,53,69,1)!important;
+}
+
+.result-success {
+    --table-color: #000;
+    --table-bg: #d1e7dd;
+    --table-border-color: #bcd0c7;
+}
+
+.result-pending {
+    --table-color: #000;
+    --table-bg: rgba(231,223,209,1);
+    --table-border-color: rgba(231,223,209,1);
+}
+
+.result-danger {
+    --table-color: #000;
+    --table-bg: #f8d7da;
+    --table-border-color: #dfc2c4;
+}
+
+.result-primary {
+    --table-color: #000;
+    --table-bg: #cfe2ff;
+    --btable-border-color: #bacbe6;
+}
+
+.result-cancelled {
+    --table-color: #000;
+    --table-bg: var(--grey);
+    --btable-border-color: var(--dark-two);
+}
+
+.result {
+    color: var(--table-color);
+    border-color: var(--table-border-color);
+    background-color: var(--table-bg);
+}
+
+.result label {
+    display: block;
+}
+
+.pagination {
+  display: inline-block;
+    margin-top: 10px;
+}
+
+.pagination a {
+  float: left;
+  padding: 8px 16px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/*
+    pipeline results
+ */
+
+.pipeline-results-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pipeline-results-list .pipeline-results-hide-toggle {
+    display: none;
+}
+
+.pipeline-results-list .pipeline-results-toggleable-content {
+    display: none;
+}
+
+.pipeline-results-list .pipeline-results-hide-toggle:checked ~ .pipeline-results-toggleable-content,
+.pipeline-results-list .pipeline-results-toggleable-content:has(.pipeline-results-hide-toggle:checked) {
+    display: block;
+}
+
+.pipeline-results-list .result {
+    padding: 0.5em 1em;
+}
+
+.pipeline-results-list .result:has(> .pipeline-results-hide-toggle:checked) {
+    border: 1px solid black;
+    padding: calc(0.5em - 1px) calc(1em - 1px);
+}

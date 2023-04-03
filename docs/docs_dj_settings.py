@@ -23,16 +23,12 @@ INSTALLED_APPS = [
     # Third party
     "django.contrib.staticfiles",
     "django_extensions",
-    # wildcoeus
-    "wildcoeus",
-    "wildcoeus.dashboards",
-    "wildcoeus.pipelines",
+    "pipelines",
     # Project
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -109,7 +105,7 @@ LOGGING = {
         "level": "WARNING",
     },
     "loggers": {
-        "wildcoeus-pipelines": {
+        "pipelines": {
             "handlers": ["console"],
             "level": "DEBUG",
             "propagate": False,
@@ -118,4 +114,4 @@ LOGGING = {
 }
 
 
-WILDCOEUS_PIPELINE_RUNNER = "wildcoeus.pipelines.runners.celery.runner.Runner"
+PIPELINES_PIPELINE_RUNNER = "pipelines.runners.celery.runner.Runner"

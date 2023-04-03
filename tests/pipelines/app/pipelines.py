@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
-from wildcoeus.pipelines.base import ModelPipeline, Pipeline
-from wildcoeus.pipelines.tasks import Task
+from pipelines.base import ModelPipeline, Pipeline
+from pipelines.tasks import Task
 
 
 class TestTask(Task):

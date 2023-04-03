@@ -10,7 +10,7 @@ To create a pipeline, you must create a :code:`piplines.py` file
 in your django app containing a class that extends the base
 :code:`Pipeline` class::
 
-    from wildcoeus.pielines.base import Pipeline
+    from pipelines.base import Pipeline
 
 
     class CustomPipeline(Pipeline):
@@ -19,7 +19,7 @@ in your django app containing a class that extends the base
 Tasks can then be added by, by default they will be ran in the order
 they are defined in the pipeline::
 
-    from wildcoeus.pielines.base import Pipeline
+    from pipelines.base import Pipeline
 
 
     class CustomPipeline(Pipeline):
@@ -39,7 +39,7 @@ base classes to create a merged metaclass accessible from the
 a class called :code:`Meta` as a child of the pipeline object::
 
     from django.utils.translation import gettext_lazy as _
-    from wildcoeus.pielines.base import Pipeline
+    from pipelines.base import Pipeline
 
 
     class CustomPipeline(Pipeline):
@@ -94,7 +94,7 @@ There are 2 options for defining the queryset, either:
 * setting the model in the pipeline meta class, this will run the pipeline for
   each object in the database::
 
-      from wildcoeus.pielines.base import ModelPipeline
+      from pipelines.base import ModelPipeline
 
 
       class CustomPipeline(ModelPipeline):
@@ -107,7 +107,7 @@ There are 2 options for defining the queryset, either:
   used to define objects that can be passed into the pipeline, more complex
   queries are not supported eg aggregates and annotations::
 
-      from wildcoeus.pielines.base import ModelPipeline
+      from pipelines.base import ModelPipeline
 
 
       class CustomPipeline(ModelPipeline):
@@ -136,7 +136,7 @@ wait for :code:`a` to have finished and task :code:`c` must wait for task :code:
 have finished but no tasks need to wait for :code:`d` to have finished as :code:`d` is not
 listed as a dependency of any task::
 
-    from wildcoeus.pipelines.base import Pipeline
+    from pipelines.base import Pipeline
 
     ...
 

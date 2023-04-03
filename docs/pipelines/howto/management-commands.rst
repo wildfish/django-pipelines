@@ -13,4 +13,4 @@ or the defined runner.
 
 Cleans up pipeline logs and results objects from the database if they are older
 than the provided number of days. If no value is supplied the value in the
-:code:`WILDCOEUS_CLEAR_LOG_DAYS` setting is used.
+:code:`PIPELINES_CLEAR_LOG_DAYS` setting is used.

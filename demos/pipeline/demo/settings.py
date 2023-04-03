@@ -76,15 +76,12 @@ class Common(Configuration):
         "django.contrib.staticfiles",
         "django_extensions",
         # "django_celery_results",
-        # pipelines
-        "wildcoeus",
-        "wildcoeus.pipelines",
+        "pipelines",
         # Project
         "demo.basic.apps.BasicConfig",
     ]
     MIDDLEWARE = [
         "django.middleware.security.SecurityMiddleware",
-        "corsheaders.middleware.CorsMiddleware",
         "whitenoise.middleware.WhiteNoiseMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.common.CommonMiddleware",
@@ -199,7 +196,7 @@ class Common(Configuration):
             "level": "WARNING",
         },
         "loggers": {
-            "wildcoeus-pipelines": {
+            "pipelines": {
                 "handlers": ["console"],
                 "level": "DEBUG",
                 "propagate": False,
@@ -263,9 +260,9 @@ class Common(Configuration):
         Queue(CELERY_TASK_HIGHIO_QUEUE, routing_key=CELERY_TASK_HIGHIO_QUEUE),
     )
 
-    WILDCOEUS_PIPELINE_RUNNER = "wildcoeus.pipelines.runners.celery.runner.Runner"
-    # WILDCOEUS_PIPELINE_RUNNER = "wildcoeus.pipelines.runners.eager.Runner"
-    # WILDCOEUS_PIPELINE_REPORTER = "wildcoeus.pipelines.reporters.orm.ORMReporter"
+    PIPELINES_PIPELINE_RUNNER = "pipelines.runners.celery.runner.Runner"
+    # PIPELINES_PIPELINE_RUNNER = "pipelines.runners.eager.Runner"
+    # PIPELINES_PIPELINE_REPORTER = "pipelines.reporters.orm.ORMReporter"
 
 
 class Dev(Common):

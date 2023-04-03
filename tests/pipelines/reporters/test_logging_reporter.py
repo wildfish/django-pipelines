@@ -3,8 +3,8 @@ from unittest.mock import Mock
 
 import pytest
 
-from wildcoeus.pipelines.reporters.logging import LoggingReporter
-from wildcoeus.pipelines.status import PipelineTaskStatus
+from pipelines.reporters.logging import LoggingReporter
+from pipelines.status import PipelineTaskStatus
 
 
 pytestmark = pytest.mark.django_db

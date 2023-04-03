@@ -43,9 +43,9 @@ Config Data
 
 The config type for a task is defined by defining a :code:`ConfigType` property
 on the task class. This should extend the :code:`TaskConfig` from
-:code:`wildcoeus.pipelines.tasks.base`::
+:code:`pipelines.tasks.base`::
 
-    from wildcoeus.pipelines.tasks.base import TaskConfig, Task
+    from pipelines.tasks.base import TaskConfig, Task
 
 
     class CustomTask(Task):
@@ -56,7 +56,7 @@ In this example, when adding a task to a pipeline, the task must be instantiated
 with a keyword option :code:`a` which is a :code:`str`, if it is missing an error
 will be raised::
 
-    from wildcoeus.pipelines.base import Pipeline
+    from pipelines.base import Pipeline
 
     class CustomPipeline(Pipeline):
         # will raise an error because `a` is not supplied
@@ -98,8 +98,8 @@ the second task as parameter :code:`b`:
 
     from pydantic import BaseModel
 
-    from wildcoeus.pipelines.tasks.base import Task
-    from wildcoeus.pipelines.base import Pipeline
+    from pipelines.tasks.base import Task
+    from pipelines.base import Pipeline
 
     class FirstTask(Task)
         class InputType(BaseModel):

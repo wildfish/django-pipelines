@@ -7,18 +7,17 @@ This is a quickstart guide for creating a simple pipeline.
 Project Setup
 -------------
 
+We recommend using a virtual environment such as `pyenv <https://github.com/pyenv/pyenv>`_ to manage your
+dependencies and Python versions. From this point we assume you have a environment setup, activated & pip installed.
+
 Create a new Django project::
 
     # Create the project directory
     mkdir demo
     cd demo
 
-    # Create a virtual environment
-    pyenv virtualenv 3.11.0 django-wildcoeus-demo
-    pyenv activate django-wildcoeus-demo
-
     # Install
-    pip install django-wildcoeus
+    pip install django-pipelines
 
     # Set up a new project
     django-admin startproject demo .
@@ -28,13 +27,12 @@ Create a new Django project::
 
 Settings
 ========
-Firstly we need to add :code:`wildcoeus`, :code:`wildcoeus.pipelines` and the new app :code:`demo.mypipeline` to :code:`INSTALLED_APPS` in :code:`demo/settings.py`::
+Firstly we need to add :code:`pipelines` and the new app :code:`demo.mypipeline` to :code:`INSTALLED_APPS` in :code:`demo/settings.py`::
 
     INSTALLED_APPS = [
         ...
         "django.contrib.humanize",
-        "wildcoeus",
-        "wildcoeus.pipelines",
+        "pipelines",
         "demo.mypipeline",
     ]
 
@@ -57,8 +55,7 @@ Create a new file :code:`demo/mypipeline/pipelines.py`
 
 Note: It is important that you name the file :code:`pipelines.py` as this is used by the registry to discover your pipelines::
 
-    from wildcoeus.pipelines import Pipeline, Task
-    from wildcoeus.pipelines.registry import pipeline_registry
+    from pipelines.base import Pipeline, Task
 
 
     class PrintWelcomeMessageTask(Task):
@@ -118,8 +115,7 @@ Adding another Task
 To complete this example we will add another task to our pipeline.  Update :code:`demo/mypipeline/pipelines.py`::
 
     import time
-    from wildcoeus.pipelines import Pipeline, Task
-    from wildcoeus.pipelines.registry import pipeline_registry
+    from pipelines.base import Pipeline, Task
 
 
     class PrintWelcomeMessageTask(Task):
@@ -152,31 +148,10 @@ We have added this new task to our pipeline and specified that this should run a
 a config variable to the task instance :code:`config={"parents": ["print_message"]}`.  Adding this allows us to define
 the exact order each task should be ran.
 
-If we again run the pipeline using the management command we should now see::
+If we again run the pipeline using the management command we should now see:
 
-    Pipelines:
-    1). demo.mypipeline.pipelines.FirstPipeline:
-
-    Which pipelines would you like to start? 1
-    demo.mypipeline.pipelines.FirstPipeline will run the following tasks:
-    1). print_message: Print Message
-    2). numbers_task: Print 3 times table
-
-    Run [r], Run eager [e] or Cancel [c]? e
-    3 Times Table:
-    1 x 1 = 3
-    2 x 2 = 6
-    3 x 3 = 9
-    4 x 4 = 12
-    5 x 5 = 15
-    6 x 6 = 18
-    7 x 7 = 21
-    8 x 8 = 24
-    9 x 9 = 27
-    10 x 10 = 30
-    11 x 11 = 33
-    12 x 12 = 36
-    Pipeline Completed
+.. image:: _images/quickstart_pipelines_command.gif
+   :alt: Demo Dashboard
 
 
 Monitoring Pipelines
@@ -189,7 +164,7 @@ To wire up the pipeline monitoring views we need to add them to the urls file.  
 
     urlpatterns = [
         path('admin/', admin.site.urls),
-        path('pipelines/', include('wildcoeus.pipelines.urls')),
+        path('pipelines/', include('pipelines.urls')),
     ]
 
 

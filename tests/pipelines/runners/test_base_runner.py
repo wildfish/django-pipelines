@@ -2,9 +2,9 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from wildcoeus.pipelines.base import Pipeline
-from wildcoeus.pipelines.results.helpers import build_pipeline_execution
-from wildcoeus.pipelines.runners.base import PipelineRunner
+from pipelines.base import Pipeline
+from pipelines.results.helpers import build_pipeline_execution
+from pipelines.runners.base import PipelineRunner
 
 
 pytestmark = pytest.mark.django_db
@@ -82,7 +82,7 @@ def test_start__start_runner_called(test_pipeline):
         {},
     )
 
-    with patch("wildcoeus.pipelines.runners.base.PipelineRunner.run") as runner:
+    with patch("pipelines.runners.base.PipelineRunner.run") as runner:
         PipelineRunner().start(
             pipeline_execution,
             reporter=reporter,
