@@ -5,7 +5,7 @@ Quickstart
 This is a quickstart guide for creating a simple pipeline.
 
 Project Setup
--------------
+=============
 
 We recommend using a virtual environment such as `pyenv <https://github.com/pyenv/pyenv>`_ to manage your
 dependencies and Python versions. From this point we assume you have a environment setup, activated & pip installed.

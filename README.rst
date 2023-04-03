@@ -20,11 +20,6 @@ Features
 Supports Django 3.2 to 4.1, on Python 3.9+.
 
 See the `full documentation <https://django-pipelines.readthedocs.io>`_ for details
-of how django-pipelines works; in particular:
+of how django-pipelines works.
 
-* `Installation <https://django-pipelines.readthedocs.io/en/latest/installation.html>`_
-  - how to install
-* `Change log <https://django-pipelines.readthedocs.io/en/latest/changelog.html>`_
-  - what has changed from previous versions and how to upgrade
-* `Contributing <https://django-pipelines.readthedocs.io/en/latest/contributing.html>`_
-  - how to contribute to the project
+.. include:: docs/pipelines/howto/quickstart.rst
