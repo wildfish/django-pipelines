@@ -29,10 +29,10 @@ class PipelineDigestItem:
     total_failure: int = 0
     """The total number of times the pipeline has failed"""
 
-    last_ran: datetime | None = None
+    last_ran: Optional[datetime] = None
     """The date and time the pipeline was last ran"""
 
-    average_runtime: float | None = None
+    average_runtime: Optional[float] = None
     """The average amount of time (in seconds) it takes to run the pipeline"""
 
 
@@ -370,7 +370,7 @@ class PipelineResultsStorage:
         """
         raise NotImplementedError()
 
-    def get_pipeline_execution(self, run_id) -> PipelineExecution | None:
+    def get_pipeline_execution(self, run_id) -> Optional[PipelineExecution]:
         """
         Fetch a specific pipeline execution from the storage.
 
@@ -391,7 +391,7 @@ class PipelineResultsStorage:
         """
         raise NotImplementedError()
 
-    def get_pipeline_result(self, _id) -> PipelineResult | None:
+    def get_pipeline_result(self, _id) -> Optional[PipelineResult]:
         """
         Fetch a specific pipeline result from the storage.
 
@@ -412,7 +412,7 @@ class PipelineResultsStorage:
         """
         raise NotImplementedError()
 
-    def get_task_execution(self, _id) -> TaskExecution | None:
+    def get_task_execution(self, _id) -> Optional[TaskExecution]:
         """
         Fetch a specific task execution from the storage.
 
@@ -437,7 +437,7 @@ class PipelineResultsStorage:
         """
         raise NotImplementedError()
 
-    def get_task_result(self, _id) -> TaskResult | None:
+    def get_task_result(self, _id) -> Optional[TaskResult]:
         """
         Fetch a specific task result from the storage.
 

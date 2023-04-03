@@ -100,7 +100,7 @@ def get_pipeline_executions(
     return storage.get_pipeline_executions(pipeline_id=pipeline_id)
 
 
-def get_pipeline_execution(run_id) -> PipelineExecution | None:
+def get_pipeline_execution(run_id) -> Optional[PipelineExecution]:
     """
     Fetch a specific pipeline execution from the storage.
 
@@ -123,7 +123,7 @@ def get_pipeline_results(run_id: Optional[str] = None) -> Sequence[PipelineResul
     return storage.get_pipeline_results(run_id=run_id)
 
 
-def get_pipeline_result(_id) -> PipelineResult | None:
+def get_pipeline_result(_id) -> Optional[PipelineResult]:
     """
     Fetch a specific pipeline result from the storage.
 
@@ -150,7 +150,7 @@ def get_task_executions(
     )
 
 
-def get_task_execution(_id) -> TaskExecution | None:
+def get_task_execution(_id) -> Optional[TaskExecution]:
     """
     Fetch a specific task execution from the storage.
 
@@ -182,7 +182,7 @@ def get_task_results(
     )
 
 
-def get_task_result(_id) -> TaskResult | None:
+def get_task_result(_id) -> Optional[TaskResult]:
     """
     Fetch a specific task result from the storage.
 

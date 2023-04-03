@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from django import template
 from django.utils.timezone import now
@@ -23,7 +23,7 @@ def lookup(value, key):
 
 @register.filter
 def duration(
-    delta_or_start: Optional[timedelta | datetime], end: Optional[datetime] = None
+    delta_or_start: Optional[Union[timedelta, datetime]], end: Optional[datetime] = None
 ):
     """
     Converts a time delta into a formatted string.
@@ -85,7 +85,7 @@ def duration(
 
 
 @register.simple_tag
-def status_class(status: str | PipelineTaskStatus):
+def status_class(status: Union[str, PipelineTaskStatus]):
     """
     Converts a pipeline status to a css class.
 
@@ -107,7 +107,7 @@ def status_class(status: str | PipelineTaskStatus):
 
 
 @register.simple_tag
-def status_text(status: str | PipelineTaskStatus):
+def status_text(status: Union[str, PipelineTaskStatus]):
     """
     Converts a pipeline status to a human friendly string.
 
