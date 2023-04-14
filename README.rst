@@ -9,9 +9,14 @@ https://github.com/wildfish/django-pipelines
 .. image:: https://github.com/wildfish/django-pipelines/actions/workflows/build.yml/badge.svg
     :target: https://github.com/wildfish/django-pipelines
 
-.. image:: https://coveralls.io/repos/wildfish/django-pipelines/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/wildfish/django-pipelines?branch=main
+.. image:: https://codecov.io/gh/wildfish/django-pipelines/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/wildfish/django-pipelines
 
+.. image:: https://badge.fury.io/py/django-pipelines.svg
+    :target: https://pypi.python.org/pypi/django-pipelines/
+
+.. image:: https://img.shields.io/pypi/pyversions/django-pipelines.svg
+    :target: https://pypi.python.org/pypi/django-pipelines/
 Features
 ========
 
