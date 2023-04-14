@@ -9,7 +9,7 @@ https://github.com/wildfish/django-pipelines
 .. image:: https://github.com/wildfish/django-pipelines/actions/workflows/build.yml/badge.svg
     :target: https://github.com/wildfish/django-pipelines
 
-.. image:: https://codecov.io/gh/wildfish/django-pipelines/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/wildfish/django-pipelines/branch/main/graph/badge.svg
   :target: https://codecov.io/gh/wildfish/django-pipelines
 
 .. image:: https://badge.fury.io/py/django-pipelines.svg
