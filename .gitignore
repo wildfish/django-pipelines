@@ -124,3 +124,4 @@ dmypy.json
 dev-docker-compose.yml
 *.idea
 demos/docs
+demos/dashboard/demo-db

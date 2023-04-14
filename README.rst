@@ -16,7 +16,7 @@ Features
 ========
 
 * Data pipeline management with configurable runners (celery support included), reporters and management UI.
-* Supports Django 3.2 to 4.1, on Python 3.9+.
+* Supports Django 3.2 to 4.2, on Python 3.9+.
 
 See the `full documentation <https://django-pipelines.readthedocs.io>`_ for details
 of how django-pipelines works.
@@ -177,7 +177,7 @@ the exact order each task should be ran.
 If we again run the pipeline using the management command we should now see:
 
 .. image:: _images/quickstart_pipelines_command.gif
-   :alt: Demo Dashboard
+   :alt: Demo Command
 
 
 Monitoring Pipelines
