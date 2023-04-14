@@ -31,7 +31,6 @@ pytest-mypy
 snapshottest
 
 # Documentation
-graphlib_backport
 sphinx
 sphinx_rtd_theme
 furo
