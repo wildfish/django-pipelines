@@ -20,9 +20,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.humanize",
-    # Third party
     "django.contrib.staticfiles",
-    "django_extensions",
     "pipelines",
     # Project
 ]
